@@ -1,17 +1,25 @@
 import { Component, OnInit } from '@angular/core';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-contacts',
   template: `
-    <p>
-      I am contacts component!
-    </p>
+    <div *ngFor="let contact of contacts$ | async">
+      <a [routerLink]="contact.id">
+        {{contact.name}}
+      </a>
+    </div>
   `,
   styles: []
 })
 export class ContactsComponent implements OnInit {
+  contacts$;
 
-  constructor() { }
+  constructor(private http:Http) { 
+    this.contacts$ = http.get('https://starwars-json-server-ewtdxbyfdz.now.sh/people')
+      .map(res => res.json());
+  }
 
   ngOnInit() {
   }
