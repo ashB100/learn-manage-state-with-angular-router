@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-contacts',
   template: `
     <p>
-      contacts Works!
+      I am contacts component!
     </p>
   `,
   styles: []
